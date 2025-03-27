@@ -1,0 +1,302 @@
+// colors
+$bg-color: #d6d6d6;
+$outline-color: #ffffff;
+$circle-color: #4d8cf5;
+$circle-shadow-dark-color: #427bcb;
+$circle-shadow-light-color: #70a5f2;
+$v-color: #515151;
+$v-shadow-darken-color: #6c6c6c;
+$v-shadow-dark-color: #888a8b;
+$v-shadow-light-color: #a0a0a0;
+
+// mixins
+@mixin center {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+@mixin pseudo($position: absolute, $content: "") {
+    content: $content;
+    position: $position;
+}
+
+@mixin breakpoint($point) {
+    @if $point==tablet {
+        @media (max-width: 1024px) and (min-width: 768px) {
+            @content ;
+        }
+    }
+    @else if $point==mobile {
+        @media (max-width: 480px) and (min-width: 320px) {
+            @content ;
+        }
+    }
+}
+
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+body{
+  background: $bg-color;
+  overflow: hidden;
+}
+
+.logo{
+  @include center;
+  filter: drop-shadow(0 0 1.8vmin $v-color);
+
+  .circle-top{
+    @include center;
+    top: -28vmin;
+    background: $outline-color;
+    width: 30vmin;
+    height: 30vmin;
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .circle-top-inner{
+    @include center;
+    top: -27.8vmin;
+    background: $outline-color;
+    width: 9.8vmin;
+    height: 9.8vmin;
+    border-radius: 50%;
+    border: 7.1vmin solid $circle-color;
+    z-index: 5;
+  }
+
+  .circle-top-shadow{
+    @include center;
+    top: -27vmin;
+    background: $circle-shadow-dark-color;
+    width: 24.7vmin;
+    height: 24vmin;
+    border-radius: 50%;
+    z-index: 3;
+
+    &:before{
+      @include pseudo;
+      top: -0.8vmin;
+      left: 0.41vmin;
+      width: 24vmin;
+      height: 24vmin;
+      background: $circle-shadow-light-color;
+      border-radius: 50%;
+    }
+  }
+  
+  .circle-bottom{
+    @include center;
+    top: 10vmin;
+    background: $outline-color;
+    width: 37vmin;
+    height: 37vmin;
+    border-radius: 50%;
+  }
+
+  .circle-bottom-inner{
+    @include center;
+    z-index: 4;
+    top: 10vmin;
+    background: $outline-color;
+    width: 11vmin;
+    height: 11vmin;
+    border-radius: 50%;
+    border: 10vmin solid $circle-color;
+  }
+
+  .circle-bottom-shadow{
+    @include center;
+    top: 11vmin;
+    background: $circle-shadow-dark-color;
+    width: 31vmin;
+    height: 31vmin;
+    border-radius: 50%;
+    z-index: 3;
+
+    &:before{
+      @include pseudo;
+      top: -0.9vmin;
+      width: 31vmin;
+      height: 31vmin;
+      background: $circle-shadow-light-color;
+      border-radius: 50%;
+    }
+  }
+
+  .v-bottom{
+    @include center;
+    top: 54.5vmin;
+    width: 0; 
+    height: 0; 
+    border-left: 8vmin solid transparent;
+    border-right: 8vmin solid transparent;
+    border-top: 14vmin solid $outline-color;
+    font-size: 0;
+    line-height: 0;
+
+    &:after{
+      @include pseudo;
+      top: -15vmin;
+      left: -5.5vmin;
+      width: 0; 
+      height: 0; 
+      border-left: 5.5vmin solid transparent;
+      border-right: 5.5vmin solid transparent;
+      border-top: 10vmin solid $v-color;
+    }  
+  }
+
+  .v-right{
+    @include center;
+    z-index: 2;
+    left: 29vmin;
+    top: -18vmin;
+    width: 10.5vmin;
+    height: 20vmin;
+    background: $v-color;
+    transform: rotate(28deg);
+  }
+
+  .v-right-outline{
+    @include center;
+    z-index: 1;
+    left: 34vmin;
+    top: -15vmin;
+    width: 10.5vmin;
+    height: 20vmin;
+    background: $outline-color;
+    transform: rotate(28deg);
+  }
+
+  .v-right-outline-top{
+    @include center;
+    top: -28.5vmin;
+    left: 39vmin;
+    width: 22.5vmin;
+    height: 18.2vmin;
+    transform: skewX(150deg);
+    background: $outline-color;
+  }
+
+  .v-right-box{
+    @include center;
+    z-index: 2;
+    top: -31.2vmin;
+    left: 40vmin;
+    width: 16.5vmin;
+    height: 9.5vmin;
+    transform: skewX(150deg);
+    background: $v-color;
+  }
+
+  .v-right-shadow-top{
+    @include center;
+    z-index: 1;
+    top: -31.5vmin;
+    left: 40.3vmin;
+    width: 16.5vmin;
+    height: 10vmin;
+    transform: skewX(150deg);
+    background: $v-shadow-darken-color;
+  }  
+
+  .v-right-shadow-bottom{
+    @include center;
+    z-index: 1;
+    top: -26vmin;
+    left: 37vmin;
+    width: 16.5vmin;
+    height: 10vmin;
+    transform: skewX(150deg);
+    background: $v-shadow-dark-color;
+
+    &:before{
+      @include pseudo;
+      top: -0.4vmin;
+      width: 16.5vmin;
+      height: 10vmin;
+      background: $v-shadow-light-color;
+    }
+  }
+
+  .v-left{
+    @include center;
+    z-index: 2;
+    right: 29vmin;
+    top: -18vmin;
+    width: 10.5vmin;
+    height: 20vmin;
+    background: $v-color;
+    transform: rotate(-28deg);
+  }
+
+  .v-left-outline{
+    @include center;
+    z-index: 1;
+    right: 34vmin;
+    top: -15vmin;
+    width: 10.5vmin;
+    height: 20vmin;
+    background: $outline-color;
+    transform: rotate(-28deg);
+  }
+
+  .v-left-outline-top{
+    @include center;
+    top: -28.5vmin;
+    right: 39vmin;
+    width: 22.5vmin;
+    height: 18.2vmin;
+    transform: skewX(-150deg);
+    background: $outline-color;
+  }
+
+  .v-left-box{
+    @include center;
+    z-index: 2;
+    top: -31.2vmin;
+    right: 40vmin;
+    width: 16.5vmin;
+    height: 9.5vmin;
+    transform: skewX(-150deg);
+    background: $v-color;
+  }
+
+  .v-left-shadow-top{
+    @include center;
+    z-index: 1;
+    top: -31.5vmin;
+    right: 40.3vmin;
+    width: 16.5vmin;
+    height: 10vmin;
+    transform: skewX(-150deg);
+    background: $v-shadow-darken-color;
+  }  
+
+  .v-left-shadow-bottom{
+    @include center;
+    z-index: 1;
+    top: -26vmin;
+    right: 37vmin;
+    width: 16.5vmin;
+    height: 10vmin;
+    transform: skewX(-150deg);
+    background: $v-shadow-dark-color;
+
+    &:before{
+      @include pseudo;
+      top: -0.4vmin;
+      width: 16.5vmin;
+      height: 10vmin;
+      background: $v-shadow-light-color;
+    }
+  }
+}
